@@ -1,0 +1,27 @@
+---
+driver:
+  name: docker
+
+platforms:
+  - name: goss-audit-eol-c6
+    image: docker.io/library/centos:6.7
+
+  - name: goss-audit-eol-c7
+    image: docker.io/library/centos:7.4.1708
+
+  - name: goss-audit-eol-u14
+    image: docker.io/library/ubuntu:14.04
+
+provisioner:
+  name: ansible
+  options:
+    vv: true
+
+scenario:
+  name: eol_os
+  test_sequence:
+    - destroy
+    - create
+    - prepare
+    - converge
+...

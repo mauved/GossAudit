@@ -1,0 +1,27 @@
+---
+dependency:
+  enabled: false
+
+driver:
+  name: docker
+
+platforms:
+  - name: goss-audit-repo-c6
+    image: docker.io/library/centos:6
+
+  - name: goss-audit-repo-c7
+    image: docker.io/library/centos:7
+
+provisioner:
+  name: ansible
+  options:
+    vv: true
+
+scenario:
+  name: invalid_repo
+  test_sequence:
+    - destroy
+    - create
+    - prepare
+    - converge
+...

@@ -1,0 +1,14 @@
+---
+- name: Break DNS config
+  hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+    # copy module does not run well for overwriting /etc/hosts and
+    # /etc/resolv.conf—attempting to do so returns something like:
+    # OSError: [Errno 16] Device or resource busy:
+    # b'/etc/.ansible_tmp54thp4_3resolv.conf' -> b'/etc/resolv.conf'
+    # More research needed.
+    - name: Set instance as its own DNS resolver
+      shell: echo nameserver 127.0.0.1 > /etc/resolv.conf
+...

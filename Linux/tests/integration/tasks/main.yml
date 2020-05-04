@@ -1,0 +1,9 @@
+---
+- name: Run precheck script
+  script:
+    cmd: GossAudit.sh
+    executable: bash
+  changed_when: false
+  failed_when: false
+  register: audit_result
+...
