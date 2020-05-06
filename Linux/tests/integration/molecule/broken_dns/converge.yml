@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Run GossAudit
+      include_role:
+        name: integration
+
+    - name: Verify script execution on supported platforms
+      assert:
+        that: audit_result.rc != 0
+...

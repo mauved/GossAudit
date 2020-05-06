@@ -1,0 +1,37 @@
+---
+- name: Set up invalid repo
+  hosts: all
+  gather_facts: true
+  gather_subset:
+    - min
+  tasks:
+    - name: Configure invalid yum optical media repo
+      block:
+        - name: Define invalid repo
+          yum_repository:
+            state: present
+            file: installmedia
+            name: installmedia
+            baseurl: file:///mnt/media/
+            description: Invalid media repo
+            enabled: true
+            gpgcheck: false
+
+        - name: Clean metadata
+          command: yum clean metadata
+          args:
+            warn: false
+
+      when: ansible_os_family == "RedHat"
+
+    - name: Configure invalid apt optical media repo
+      block:
+        - name: Define invalid repo
+          apt_repository:
+            state: present
+            update_cache: false
+            filename: installmedia
+            repo: deb file:///mnt/media/repo/ {{ ansible_distribution_release }} main contrib
+
+      when: ansible_os_family == "Debian"
+...

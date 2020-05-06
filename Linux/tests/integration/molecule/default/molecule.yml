@@ -1,0 +1,54 @@
+---
+dependency:
+  enabled: false
+
+driver:
+  name: docker
+
+platforms:
+  - name: goss-audit-c6
+    image: docker.io/library/centos:6
+    groups:
+      - supported
+
+  - name: goss-audit-c7
+    image: docker.io/library/centos:7
+    groups:
+      - supported
+
+  - name: goss-audit-c8
+    image: docker.io/library/centos:8
+
+  - name: goss-audit-u16
+    image: docker.io/library/ubuntu:16.04
+    groups:
+      - supported
+
+  - name: goss-audit-u18
+    image: docker.io/library/ubuntu:18.04
+    groups:
+      - supported
+
+  - name: goss-audit-u20
+    image: docker.io/library/ubuntu:20.04
+    groups:
+      - unsupported
+
+  - name: goss-audit-d9
+    image: docker.io/library/debian:9
+    groups:
+      - unsupported
+
+provisioner:
+  name: ansible
+  options:
+    vv: true
+
+scenario:
+  name: default
+  test_sequence:
+    - destroy
+    - create
+    - prepare
+    - converge
+...
