@@ -35,9 +35,9 @@ function check_bash {
 
 # This function verifies that the version of Enterprise Linux is at a supportable version
 function check_el {
-    # EL 6.8 and 7.5 are the minimum supported versions
-    # EL 4, 5, 8 are unsupported
-    declare -Ar MIN_EL_VERSION=([4]=999 [5]=999 [6]=8 [7]=5 [8]=999)
+    # Minimum supported versions are EL 7.5 and 8.2
+    # EL 4, 5, 6 are unsupported
+    declare -Ar MIN_EL_VERSION=([4]=999 [5]=999 [6]=999 [7]=5 [8]=2)
 
     el_version=$(grep -oP "\d\.\d\d?" /etc/redhat-release)
     major_version=$(cut -d . -f 1 <<< "${el_version}")
