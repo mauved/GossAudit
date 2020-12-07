@@ -19,7 +19,7 @@
 
 
 # shellcheck disable=SC2034
-declare -r _VERSION=1.0.0.0
+declare -r _VERSION=1.1.0.0
 
 # Exit codes:
 # 1: OS configuration needs correction.
